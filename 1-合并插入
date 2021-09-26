@@ -1,0 +1,23 @@
+//第一part  将两个有序链表合并到一个空链表中 ，形成一个新的有序链表 
+//共三个链表,其中元素均从左到右依次增大 
+
+Status List_we(SqListPtr La,SqListPtr Lb,SqListPtr Lc){             //定义三个链表La、b、c 
+	ElemType elem1,elem2;                                             //定义La、Lb的当前元素 
+	status=List_Init(Lc);                                             //初始化清空链表Lc 
+	int i,j,k;                                                        //分别定义三个链表的当前位置 
+	int n=List_Size(La);                                              //定义两个链表的长度，即元素个数 
+	int m=List_Size(Lb);
+	while(i<=n||j<=m){                                                //当前位置小于各自长度时合并链表 （即可以进行程序） 
+		List_Retrieve(La,i,&elem1);                                     //取出链表中第i个元素暂存到elem1的地址中 
+		List_Retrieve(Lb,j,&elem2);                                     //取出链表中第j个元素暂存到elem2的地址中 
+		if(elem1<elem2){		                                            //比较这两个元素的大小 ，若La的小 
+			status=List_Insert(Lc,k,elem1);                               //取出elem1的值，放到Lc的k位置上填充 
+			i++;                                                          //指向La中下一个元素 
+		}
+		else{
+			status=List_Insert(Lc,k,elem2);                               //若Lb小，取出elem2的值，放到Lc的k位置上填充
+			j++;                                                          //指向Lb中下一个元素 
+		}
+		k++;	                                                          //指向Lc下一个元素	
+	}
+}
