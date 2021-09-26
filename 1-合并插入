@@ -31,7 +31,7 @@ Status List_we(SqListPtr La,SqListPtr Lb,SqListPtr Lc){             //定义三�
 	while(j<=m){                                                                  //Lb还没处理完 
 		List_Retrieve(Lb,j,&elem2);
 		status=List_Insert(Lc,k,elem2);
-		i++;
+		j++;
 		k++;
 	}
 	return status;
