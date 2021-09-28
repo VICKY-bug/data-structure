@@ -1,0 +1,19 @@
+//慕课
+//单链表插入一个元素 
+//pos-1是要插入元素的位置的下标返回值 
+status List_Insert(SqListPtr L,int pos,ElemType elem){                      //在链表L中，pos的位置，插入元素elem 
+	status s=range_error;                                                     //定义返回值，范围错误 
+	if((pos-1)>=0&&(pos-1)<=L->length){                                       //判断插入位置是否符合链表长度 
+		if(L&&L->length<L->List_Size){                                          //判断链表是否存在以及链表长度是否大于链表所占内存，否则可能无法向后移动元素 
+			for(int i=L->length-1;i>=(pos-1);--i){                                //i指向链表的最后一个元素，当该位置大于pos所在位置时进入循环 
+				L->elem[i+1]=L->elem[i];                                            //i向前移动，直到遇到pos前，都将当前i所指元素向后移动一位 
+			}
+			L->elem[pos-1]=elem;                                                  //当i遇到pos后，即可插入元素，将要插入的元素elem放到pos所在的位置 
+			L->length++;                                                          //增加链表的长度，因为每个元素都向后移动了 
+			s=success;                                                            //返回成功 
+		}
+	}
+	else
+	s=fail;                                                                    //否则返回失败 
+	return s;
+}
