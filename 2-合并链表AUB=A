@@ -1,0 +1,14 @@
+//AUB 并集，判断B中的元素是否在A内
+//若不在，则依次插入A中，实现链表的合并
+Status List_Union(SqListPtr La,SqListPtr Lb,ElemType elem){
+	Status s=success;
+	Status status; 
+	int i,j,k=List_size(Lb);                              //i是Lb的位置元素 
+	for(i=0;i<k;i++){                                     //当 i的位置在k内，则不断跳转到下一个 
+		List_Retrieve(Lb,i,&elem);                        //获取Lb中第i个元素elem的位置 
+		status=List_Locate(La,elem,&j);                   //在La中查找是否有一样的元素 
+		if(status!=s)//若没有 
+			List_Insert(La,1,elem);                      //将元素插入到La的第一个位置，实现链表的合并 
+	}
+	return status;
+} 
