@@ -1,0 +1,16 @@
+//单链表删除一个元素
+Status List_Delete(SqListPtr L,int pos,ElemType elem){           //创建单链表必备的三个东西 
+	Status s=range_error;                                       //定义一个错误范围 
+	if((pos=1)>=0&&(pos-1)<=length){                            //判断pos是否在链表L的合法范围内 
+		if(L&&L->length>0){                                     //若L存在且非空，进入循环 
+			for(int i=pos;i<L-length;++i){                       //在长度范围内将i指向下一个元素 
+				L->elem[i-1]=L->elem[i];                        //把当前元素的值赋予上一个元素，实现删除 
+				L->length--;                                    //向前移动后减少链表长度 
+				s=success;
+			}
+		}
+	}
+		else
+		s=fail;
+	return s;
+} 
