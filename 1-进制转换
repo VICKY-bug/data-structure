@@ -1,0 +1,46 @@
+#include<stdio.h>
+#include<stdlib.h>
+typedef struct stacknode
+{
+	int data;
+	struct stacknode *next;
+}stacknode;
+typedef struct
+{
+	stacknode *top;
+}LinkStack;
+void conversion(int n,int k)
+{
+	LinkStack *s;
+	stacknode *p;
+	int x;
+	s=(LinkStack *)malloc(sizeof(LinkStack));
+	s->top=NULL;
+	do{
+		x=n%k;
+		n=n/k;
+		p=(stacknode *)malloc(sizeof(stacknode));
+		p->data=x;
+		p->next=s->top;
+		s->top=p;
+	}while(n);
+	printf("转换后的%d进制数为：\n",k);
+	while(s->top!=NULL)
+	{
+		if(s->top->data<10)
+		printf("%d",s->top->data);
+		else
+		printf("%c",s->top->data+55);
+		p=s->top;
+		s->top=s->top->next;
+		free(p);
+	}
+	printf("\n");
+}
+main()
+{
+	int x,k;
+	printf("请输入转换的数和进制值：\n");
+	scanf("%d%d",&x,&k);
+	conversion(x,k);
+}
